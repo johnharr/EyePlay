@@ -1,0 +1,19 @@
+body {
+    width: 95%;
+    margin-left: auto;
+    height: 100%;
+}
+
+.gameChoice {
+    text-align: center;
+    border: 2px solid;
+    border-radius: 25px;
+}
+
+.cell {
+    width: 200px;
+    height: 200px;
+    font: 180px sans-serif;
+    text-align: center;
+    vertical-align: middle;
+}

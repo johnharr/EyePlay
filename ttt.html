@@ -1,0 +1,22 @@
+<div ng-controller="TTTController">
+    <p class="center">You are:
+        <label>
+            <input type="radio" value="O" ng-model="player"/><strong>O</strong>
+        </label>
+        <label>
+            <input type="radio" value="X" ng-model="player" value="Clear Board"/><strong>X</strong>
+        </label>
+    </p>
+
+    <div class="center">
+        <h2 ng-show="winner">WINNER IS {{winner}}!! <input type="button" ng-click="newGame()" value="New Game"/></h2>
+
+        <table border="1">
+            <tr ng-repeat="row in [0,1,2]">
+                <td ng-repeat="column in [0,1,2]" ng-click="cellClick(row,column)" ng-class="cellClass(row,column)">
+                    {{cellText(row,column)}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

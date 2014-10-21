@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+    <script src="Assets/jQuery/jquery-1.11.1.min.js"></script>
+
+    <link href="Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="Assets/angular/angular.js"></script>
+
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
+    <script src="Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="Assets/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <title>EyePlay</title>
+</head>
+<body ng-app="EyePlay" ng-controller="main">
+
+<div class="row" style="padding-top: 2%">
+    <div class="col-sm-3 col-xs-3 gameChoice" ng-click="setGame('ttt.html')">TicTacToe</div>
+    <div class="col-sm-1 col-xs-1"></div>
+    <div class="col-sm-3 col-xs-3 gameChoice" ng-click="setGame('c4.html')">Connect 4</div>
+    <div class="col-sm-1 col-xs-1"></div>
+    <div class="col-sm-3 col-xs-3 gameChoice">Other</div>
+</div>
+
+<div class="gameContainer">
+    <div data-ng-include=game></div>
+</div>
+
+</body>
+</html>
