@@ -1,6 +1,7 @@
 body {
     width: 95%;
     margin-left: auto;
+    margin-right: auto;
     height: 100%;
 }
 
@@ -11,9 +12,83 @@ body {
 }
 
 .cell {
-    width: 200px;
-    height: 200px;
-    font: 180px sans-serif;
+    width: 100px;
+    height: 100px;
+    font: 90px sans-serif;
     text-align: center;
     vertical-align: middle;
 }
+
+/* minesweeper css */
+#controlPanel > div {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: .5%;
+}
+#controlPanel {
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+}
+
+input{
+    border-radius: 3px;
+}
+#gridRows, #gridCols {
+    width: 3em;
+    margin: 1%;
+}
+br  {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.center {
+    vertical-align: middle;
+}
+
+#gridLayout {
+    text-align: center;
+}
+.space {
+    width: 60px;
+    height: 60px;
+    vertical-align: top;
+}
+.space:hover {
+    background: #ffff00;
+}
+
+.glyphicon-asterisk {
+    color: red;
+}
+
+.clickedSpace {
+    background-color: darkgray;
+}
+.one {
+    color: blue;
+}
+.two {
+    color: green;
+}
+.three {
+    color: red;
+}
+.four {
+    color: purple;
+}
+.five {
+    color: maroon;
+}
+.six {
+    color: lightblue;
+}
+.seven {
+    color: black;
+}
+.eight {
+    color: gray;
+}
+/* end minesweeper css */
