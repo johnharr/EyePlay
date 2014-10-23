@@ -6,6 +6,6 @@ EyePlay.controller('main', ['$scope', '$modal',
     function ($scope, $modal) {
 
         $scope.setGame = function (g) {
-            $scope.game = g
+            $scope.game = "htmlPartials/" + g
         }
     }]);
