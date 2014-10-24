@@ -5,7 +5,6 @@ EyePlay.controller('MController', ['$scope', '$modal',
         var spacesFlagged = 0;
         var remainingClicks;
         var bombsRemaining;
-        var secs;
 
 //creates grid with html specs
         $scope.createGrid = function () {
@@ -150,7 +149,7 @@ EyePlay.controller('MController', ['$scope', '$modal',
                     $(button).addClass("clickedSpace");
                     span.addClass($scope.getNumClass(x,y));
                     remainingClicks--;
-                    if(values[x][y]==0 && !span.hasClass("glyphicon-asterisk")){
+                    if(values[x][y]==0){
                         $scope.revealBoard(x,y);
                     }
                 } else if (span.hasClass("glyphicon-flag")){
