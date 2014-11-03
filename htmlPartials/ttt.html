@@ -1,16 +1,20 @@
 <div ng-controller="TTTController">
-    <p class="center">{{player}}'s turn:
-    </p>
-
+    <h2 class="center">{{player}}'s turn
+    </h2>
     <div class="center">
-        <h2 ng-show="winner">WINNER IS {{winner}}!! <input type="button" ng-click="newGame()" value="New Game"/></h2>
+        <div id="wins">
+            <div>Wins by Player: O: {{oWins}}  --  X: {{xWins}}</div>
+        </div>
 
-        <table border="1">
+        <table id="ttt" border="1">
             <tr ng-repeat="row in [0,1,2]">
                 <td ng-repeat="column in [0,1,2]" ng-click="cellClick(row,column)" ng-class="cellClass(row,column)">
                     {{cellText(row,column)}}
                 </td>
             </tr>
         </table>
+
+        <h3 ng-show="winner">WINNER IS {{winner}}!! <br/>
+            <button class="btn btn-info" ng-click="newGame()">New Game</button></h3>
     </div>
 </div>

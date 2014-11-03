@@ -3,6 +3,8 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
         $scope.currentPlayer = 'O';
         $scope.player = 'O';
         $scope.winner = null;
+        $scope.oWins = 0;
+        $scope.xWins = 0;
         $scope.board = [
             [null, null, null],
             [null, null, null],
@@ -65,11 +67,7 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
                     if (!cell(i, j)) empty = true
                 }
             }
-            // no more empty cell - no winner
-            if (!empty) {
-                $scope.winner = 'NONE';
-                return
-            }
+
             // check board vertically and horizontally
             for (var i = 0; i < 3; i++) {
                 if (cell(i, 0) && cell(i, 0) == cell(i, 1) && cell(i, 1) == cell(i, 2)) {
@@ -88,7 +86,19 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
             }
             // winner? declare!
             if (winner) {
-                $scope.winner = winner
+                $scope.winner = winner;
+                if(winner=="X"){
+                    $scope.xWins++;
+                }
+                if(winner=="O"){
+                    $scope.oWins++;
+                }
+            }
+
+            // no more empty cell - no winner
+            if (!empty) {
+                $scope.winner = 'NONE';
+                return
             }
         }
 

@@ -20,13 +20,13 @@
 <body ng-app="EyePlay" ng-controller="main">
 <div id="topPanel" class="panel panel-default">
     <div class="panel-body">
-        <div id="title" class="col-xs-3">EyePlay</div>
+        <div id="title" class="col-xs-3" style="font-style: italic;">EyePlay</div>
         <div id="games" class="col-xs-8">
-            <div class="col-xs-4 gameChoice" ng-click="setGame('ttt.html')"><div>TicTacToe</div></div>
-            <div class="col-xs-4 gameChoice" ng-click="setGame('c4.html')"><div>Connect 4</div></div>
-            <div class="col-xs-4 gameChoice" ng-click="setGame('mine.html')"><div>Minesweeper</div></div>
+            <div class="col-xs-4 gameChoice" ng-click="setGame('ttt.html')"><div ng-style="getWidth();">TicTacToe</div></div>
+            <div class="col-xs-4 gameChoice" ng-click="setGame('c4.html')"><div ng-style="getWidth();">Connect 4</div></div>
+            <div class="col-xs-4 gameChoice" ng-click="setGame('mine.html')"><div ng-style="getWidth()">Minesweeper</div></div>
         </div>
-        <div id="about" class="col-xs-1"><span class="glyphicon glyphicon-info-sign" ng-click="open();"></span></div>
+        <div id="about" class="col-xs-1"><span class="glyphicon glyphicon-info-sign" style="text-align: center; width: inherit;" ng-click="open();"></span></div>
     </div>
 
 </div>

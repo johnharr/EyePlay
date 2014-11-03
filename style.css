@@ -1,18 +1,31 @@
 #title {
     font-size: 3em;
 }
+#topPanel {
+    //background-image: url("Assets/images/kids.jpg");
+    
+}
+.panel-body {
+    z-index: 1000;
+}
 .gameChoice {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
 
+}
+.gameChoice:hover, #about:hover {
+    cursor: pointer !important;
+    background: black;
+    color: #ffffff;
 }
 .gameChoice > div, #about > span {
     height: 60px;
     display: table-cell;
     vertical-align: middle;
-    width: inherit;
 }
+
+#ttt  {margin: 0 auto;}
 
 #about{
     border-left: solid thin #000000;
@@ -22,9 +35,9 @@ span.glyphicon-info-sign {
 }
 /* TTT style */
 .cell {
-    width: 100px;
-    height: 100px;
-    font: 90px sans-serif;
+    width: 160px;
+    height: 160px;
+    font: 150px sans-serif;
     text-align: center;
     vertical-align: middle;
 }
@@ -56,7 +69,7 @@ br  {
 }
 
 .center {
-    vertical-align: middle;
+    text-align: center;
 }
 
 #gridLayout {
@@ -68,7 +81,7 @@ br  {
     vertical-align: top;
 }
 .space:hover {
-    background: #ffff00;
+    background: #000000;
 }
 
 .glyphicon-asterisk {
