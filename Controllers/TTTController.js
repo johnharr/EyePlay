@@ -93,6 +93,7 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
                 if(winner=="O"){
                     $scope.oWins++;
                 }
+                alert("The winner is " + winner);
             }
 
             // no more empty cell - no winner

@@ -21,10 +21,3 @@ EyePlay.controller('main', ['$scope', '$modal',
             });
         }
     }]);
-
-EyePlay.controller('ModalInstance', ['$scope', '$modalInstance',
-    function ($scope, $modalInstance) {
-        $scope.exit = function(){
-            $modalInstance.close();
-        }
-    }]);

@@ -1,14 +1,11 @@
 var texts = {
     no_moves: 'no more moves in this column',
     game_over: 'game over'
-}
+};
 
 var options = {
     button: {
-        undo: $('#options > button.undo'),
         restart: $('#options > button.restart'),
-        save: $('#options > button.save'),
-        load: $('#options > button.load'),
         set: function (btn, state) {
             state = state ? false : true;
             this[btn].prop('disabled', state);
@@ -36,7 +33,7 @@ var options = {
         }
         $('#handle').stop().css('top', '-55px')[0].className = board.turn;
     }
-}
+};
 
 var utility = {
     make2Darray: function (len) {
@@ -83,7 +80,7 @@ var utility = {
         }
         return a;
     }
-}
+};
 
 var board = {
     turn: 'blue',
@@ -256,7 +253,7 @@ var board = {
                 }
             }
             return false;
-        };
+        }
 
         function checkCol() {
             quatro.length = 0;
@@ -278,7 +275,7 @@ var board = {
                 }
             }
             return false;
-        };
+        }
 
         function checkDiagonal() {
             var i, j, cr;
@@ -344,12 +341,12 @@ var board = {
                 return true;
 
             return false;
-        };
+        }
 
         // might find more than one winning position (for example diagonal & column)
         function multiWin(quatro) {
             board.quatro = board.quatro.concat(quatro);
-        };
+        }
 
         if (checkRow())
             victory = true;
@@ -387,10 +384,10 @@ var board = {
 
         console.warn(texts.game_over);
     }
-}
+};
 
 /* jQuery easing */
-jQuery.extend(jQuery.easing, {
+$.extend(jQuery.easing, {
     def: 'easeOutQuad',
     swing: function (x, t, b, c, d) {
         //alert(jQuery.easing.default);

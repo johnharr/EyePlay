@@ -1,9 +1,11 @@
 <div ng-controller="TTTController">
-    <h2 class="center">{{player}}'s turn
+    <h2 ng-show="!winner" class="center">{{player}}'s turn
     </h2>
+    <div ng-show="winner" class="center"><button class="btn btn-info" ng-click="newGame()">New Game</button></h3>
+    </div>
     <div class="center">
         <div id="wins">
-            <div>Wins by Player: O: {{oWins}}  --  X: {{xWins}}</div>
+            <div>O: {{oWins}}<br/>X: {{xWins}}</div>
         </div>
 
         <table id="ttt" border="1">
@@ -13,8 +15,5 @@
                 </td>
             </tr>
         </table>
-
-        <h3 ng-show="winner">WINNER IS {{winner}}!! <br/>
-            <button class="btn btn-info" ng-click="newGame()">New Game</button></h3>
     </div>
 </div>
