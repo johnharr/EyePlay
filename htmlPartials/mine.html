@@ -4,9 +4,9 @@
             Mines: <input type="text" id="minesLeft" style="width: 2em; text-align: center;" disabled/>
         </div>
         <div id="grid" class="col-xs-3 col-sm-3 col-md-3">
-            <input id="gridRows" type="number" min="8" max="30" value="8" ng-click="createGrid();"/>
+            <input id="gridRows" type="number" min="4" max="30" value="8" ng-click="createGrid();"/>
             <span class="glyphicon glyphicon-remove center"></span>
-            <input id="gridCols" type="number" min="8" max="40" value="8" ng-click="createGrid();"/>
+            <input id="gridCols" type="number" min="4" max="40" value="8" ng-click="createGrid();"/>
         </div>
         <div id="restart" class="col-xs-2 col-sm-2 col-md-2">
             <button id="reset" class="btn btn-danger" style="background: #000000" ng-click="createGrid();">START</button>
