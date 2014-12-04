@@ -3,67 +3,12 @@ var texts = {
     game_over: 'game over'
 };
 
-var options = {
-    button: {
-        restart: $('#options > button.restart'),
-        set: function (btn, state) {
-            state = state ? false : true;
-            this[btn].prop('disabled', state);
-        }
-    },
-
-    bind_buttons: function () {
-        var that = this;
-
-        // reset the buttons
-        $('#options > button').prop('disabled', false);
-
-        this.button.restart.bind("click", $.proxy(that, 'restart'));
-    },
-
-    restart: function () {
-        with (board) {
-            arr = utility.make2Darray(8)
-            turn = 'blue';
-            quatro.length = 0;
-            win = false;
-            table.find('div[class]').not('#handle').removeAttr('class').empty();
-            animating = false;
-            handle.show();
-        }
-        $('#handle').stop().css('top', '-55px')[0].className = board.turn;
-    }
-};
-
 var utility = {
     make2Darray: function (len) {
         var a = [];
         while (a.push([]) < len);
         return a;
     },
-    // so each 2d array in the array will represent a row
-    transformArrayByRows: function (arr) {
-        var a = [], r, c;
-        for (r = 0; r < 8; r++) {
-            for (c = 0; c < arr[r].length; c++) {
-                if (!a[c])
-                    a[c] = utility.make2Darray(8);
-                a[c][r] = arr[r][c];
-            }
-        }
-        return a;
-    },
-    // so each 2d array in the array will represent a column
-    transformArrayByCols: function (arr) {
-        var a = utility.make2Darray(8), r, c;
-        for (c = 0; c < arr.length; c++) {
-            for (r = 0; r < 8; r++) {
-                a[r].push(arr[c][r]);
-            }
-        }
-        return a;
-    },
-    // shift each row left/right by it's position, for example, row #1 will be shifted by 1, and row #3 by 3
     shift: function (arrRows, side) {
         side = side || 'left';
         var a = $.extend(true, [], arrRows);
@@ -103,20 +48,6 @@ var board = {
         container.append(this.table);	// append the board to the DOM only once it's completed
 
         options.bind_buttons();
-    },
-
-    // returns a 3x3 table
-    makeTable: function () {
-        var table = $('<table/>').attr('cellpadding', 0).attr('cellspacing', 0),
-            tr, td, row;
-
-        for (tr = 0; tr < 8; tr++) {
-            row = $('<tr/>').appendTo(table);
-            for (td = 0; td < 8; td++) {
-                row.append($('<td/>'));
-            }
-        }
-        return table;
     },
 
     makeBoard: function () {
@@ -161,7 +92,7 @@ var board = {
             var col = that.col = asides.index($(this));
             if (!that.animating) {
                 // check which column is the mouse over now
-                board.handle.css('left', col * 51);
+                board.handle.css('left', col * 120);
             }
         }
     },
@@ -396,37 +327,8 @@ $.extend(jQuery.easing, {
     easeInQuad: function (x, t, b, c, d) {
         return c * (t /= d) * t + b;
     },
-    easeInQuint: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-    },
-    easeOutQuint: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
-    },
-    easeInOutQuint: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
-    },
-    easeInSine: function (x, t, b, c, d) {
-        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
-    },
-    easeOutSine: function (x, t, b, c, d) {
-        return c * Math.sin(t / d * (Math.PI / 2)) + b;
-    },
     easeOutExpo: function (x, t, b, c, d) {
         return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
-    },
-    easeInBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * (t /= d) * t * ((s + 1) * t - s) + b;
-    },
-    easeOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
-    },
-    easeInOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
-        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
     },
     easeOutBounce: function (x, t, b, c, d) {
         if ((t /= d) < (1 / 2.75)) {

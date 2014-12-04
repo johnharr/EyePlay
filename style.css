@@ -144,27 +144,6 @@ html, body {
     height: 100%;
 }
 
-body {
-    font-family: arial, sans-serif;
-    font-size: 12px;
-}
-
-button {
-    font: 99% sans-serif;
-    width: auto;
-    overflow: visible;
-    cursor: pointer;
-}
-
-button::-moz-focus-inner {
-    border: 0;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .container {
     height: auto;
     min-height: 100%;
@@ -194,7 +173,7 @@ button::-moz-focus-inner {
 }
 
 .board > aside > div {
-    width: 50px;
+    width: 120px;
     height: 50px;
     line-height: 50px;
     border-top: .12em dashed #D1D1D1;
@@ -220,24 +199,17 @@ button::-moz-focus-inner {
     display: none;
 }
 
-h1 {
-    color: #979789;
-    padding: 10px 0 0;
-    font-size: 3em;
-    text-align: center;
-}
-
 #handle {
     position: absolute;
     left: 0;
     top: -55px;
-    width: 50px;
+    width: 120px;
     height: 50px;
     line-height: 50px;
 }
 
 table {
-    width: 460px;
+    width: 860px;
     height: 460px;
     border: .2em solid rgba(0, 0, 0, 0.15);
     margin: 50px auto;
