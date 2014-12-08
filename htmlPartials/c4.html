@@ -1,6 +1,6 @@
 <div class='container' >
     <div id='board_cont'></div>
-        <button title="restart current game" class="restart">restart</button>
+        <button title="restart current game" class="restart btn btn-success" onclick="restart();">restart</button>
         <!--
         <button title="save this game (on this browser)" class="new">save</button>
         <button title="load previously saved game" class="new">load</button>
@@ -8,4 +8,5 @@
     </div>
 <script>
     board.init( $('#board_cont') );
+    $(".restart").width(8*120-15);
 </script>

@@ -21,21 +21,41 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
         };
         $scope.cellClick = function (row, column) {
             if ($scope.winner) {
-                alert('Already game over.');
-                return
+                return;
             }
+
+            //sees if space is occupied
+            if (cell(row, column) != null) {
+                return;
+            }
+
             setCell(row, column, $scope.player);
             checkBoard();
-            var tmp = $scope.currentPlayer;
-            $scope.currentPlayer = nextPlayer(tmp);
-            $scope.player = nextPlayer(tmp);
+
+            if ($scope.winner) {
+                return;
+            }
+            var end = false;
+            var close = false;
+            end = checkWin();
+            if (!end) {
+                close = checkClose(row, column);
+                if (!close) {
+                    opponent()
+                }
+            }
+
+            close = false;
+            checkBoard();
         };
+
         $scope.newGame = function () {
             for (var i = 0; i < 3; i++) {
                 for (var j = 0; j < 3; j++) {
                     setCell(i, j, null)
                 }
             }
+            $('.winner').remove();
             $scope.currentPlayer = 'O';
             $scope.player = 'O';
             $scope.winner = null
@@ -56,6 +76,329 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
         // returns the next player
         function nextPlayer(player) {
             return {O: 'X', X: 'O'}[player]
+        }
+
+        function checkWin() {
+            if (cell(0, 0) == 'X') {
+                if (cell(0, 1) == 'X') {
+                    if (cell(0, 2) == null) {
+                        setCell(0, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(0, 2) == 'X') {
+                    if (cell(0, 1) == null) {
+                        setCell(0, 1, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 0) == 'X') {
+                    if (cell(2, 0) == null) {
+                        setCell(2, 0, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 0) == 'X') {
+                    if (cell(1, 0) == null) {
+                        setCell(1, 0, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 1) == 'X') {
+                    if (cell(2, 2) == null) {
+                        setCell(2, 2, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 2) == 'X') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X');
+                        return true;
+                    }
+                }
+            }
+
+
+            if (cell(0, 1) == 'X') {
+                if (cell(0, 2) == 'X') {
+                    if (cell(0, 0) == null) {
+                        setCell(0, 0, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 1) == 'X') {
+                    if (cell(2, 1) == null) {
+                        setCell(2, 1, 'X');
+                        return true;
+                    }
+                }
+                if (cell(2, 1) == 'X') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X');
+                        return true;
+                    }
+                }
+            }
+
+            if (cell(0, 2) == 'X') {
+                if (cell(1, 2) == 'X') {
+                    if (cell(2, 2) == null) {
+                        setCell(2, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(2, 2) == 'X') {
+                    if (cell(1, 2) == null) {
+                        setCell(1, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 1) == 'X') {
+                    if (cell(2, 0) == null) {
+                        setCell(2, 0, 'X');
+                        return true;
+                    }
+                }
+                if (cell(2, 0) == 'X') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X');
+                        return true;
+                    }
+                }
+            }
+            if (cell(1, 0) == 'X') {
+                if (cell(1, 1) == 'X') {
+                    if (cell(1, 2) == null) {
+                        setCell(1, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 2) == 'X') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 0) == 'X') {
+                    if (cell(0, 0) == null) {
+                        setCell(0, 0, 'X')
+                        return true;
+                    }
+                }
+            }
+
+            if (cell(1, 1) == 'X') {
+                if (cell(1, 2) == 'X') {
+                    if (cell(1, 0) == null) {
+                        setCell(1, 0, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 1) == 'X') {
+                    if (cell(0, 1) == null) {
+                        setCell(0, 1, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 2) == 'X') {
+                    if (cell(0, 0) == null) {
+                        setCell(0, 0, 'X')
+                        return true;
+                    }
+                }
+
+                if (cell(2, 0) == 'X') {
+                    if (cell(0, 2) == null) {
+                        setCell(0, 2, 'X')
+                        return true;
+                    }
+                }
+            }
+            if (cell(1, 2) == 'X') {
+                if (cell(2, 2) == 'X') {
+                    if (cell(0, 2) == null) {
+                        setCell(0, 2, 'X')
+                        return true;
+                    }
+                }
+            }
+            if (cell(2, 0) == 'X') {
+                if (cell(2, 1) == 'X') {
+                    if (cell(2, 2) == null) {
+                        setCell(2, 2, 'X');
+                        return true;
+                    }
+                }
+            }
+        }
+
+
+        function checkClose() {
+            if (cell(0, 0) == 'O') {
+                if (cell(0, 1) == 'O') {
+                    if (cell(0, 2) == null) {
+                        setCell(0, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(0, 2) == 'O') {
+                    if (cell(0, 1) == null) {
+                        setCell(0, 1, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 0) == 'O') {
+                    if (cell(2, 0) == null) {
+                        setCell(2, 0, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 0) == 'O') {
+                    if (cell(1, 0) == null) {
+                        setCell(1, 0, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 1) == 'O') {
+                    if (cell(2, 2) == null) {
+                        setCell(2, 2, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 2) == 'O') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X');
+                        return true;
+                    }
+                }
+            }
+
+
+            if (cell(0, 1) == 'O') {
+                if (cell(0, 2) == 'O') {
+                    if (cell(0, 0) == null) {
+                        setCell(0, 0, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 1) == 'O') {
+                    if (cell(2, 1) == null) {
+                        setCell(2, 1, 'X');
+                        return true;
+                    }
+                }
+                if (cell(2, 1) == 'O') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X');
+                        return true;
+                    }
+                }
+            }
+
+            if (cell(0, 2) == 'O') {
+                if (cell(1, 2) == 'O') {
+                    if (cell(2, 2) == null) {
+                        setCell(2, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(2, 2) == 'O') {
+                    if (cell(1, 2) == null) {
+                        setCell(1, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 1) == 'O') {
+                    if (cell(2, 0) == null) {
+                        setCell(2, 0, 'X');
+                        return true;
+                    }
+                }
+                if (cell(2, 0) == 'O') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X');
+                        return true;
+                    }
+                }
+            }
+            if (cell(1, 0) == 'O') {
+                if (cell(1, 1) == 'O') {
+                    if (cell(1, 2) == null) {
+                        setCell(1, 2, 'X');
+                        return true;
+                    }
+                }
+                if (cell(1, 2) == 'O') {
+                    if (cell(1, 1) == null) {
+                        setCell(1, 1, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 0) == 'O') {
+                    if (cell(0, 0) == null) {
+                        setCell(0, 0, 'X')
+                        return true;
+                    }
+                }
+            }
+
+            if (cell(1, 1) == 'O') {
+                if (cell(1, 2) == 'O') {
+                    if (cell(1, 0) == null) {
+                        setCell(1, 0, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 1) == 'O') {
+                    if (cell(0, 1) == null) {
+                        setCell(0, 1, 'X')
+                        return true;
+                    }
+                }
+                if (cell(2, 2) == 'O') {
+                    if (cell(0, 0) == null) {
+                        setCell(0, 0, 'X')
+                        return true;
+                    }
+                }
+
+                if (cell(2, 0) == 'O') {
+                    if (cell(0, 2) == null) {
+                        setCell(0, 2, 'X')
+                        return true;
+                    }
+                }
+            }
+            if (cell(1, 2) == 'O') {
+                if (cell(2, 2) == 'O') {
+                    if (cell(0, 2) == null) {
+                        setCell(0, 2, 'X')
+                        return true;
+                    }
+                }
+            }
+            if (cell(2, 0) == 'O') {
+                if (cell(2, 1) == 'O') {
+                    if (cell(2, 2) == null) {
+                        setCell(2, 2, 'X');
+                        return true;
+                    }
+                }
+            }
+        }
+
+
+        //randomly places opponent
+        function opponent() {
+            var row = Math.floor(Math.random() * 3);
+            var column = Math.floor(Math.random() * 3);
+            var value = 'X';
+
+            while (cell(row, column) != null) {
+                var row = Math.floor(Math.random() * 3);
+                var column = Math.floor(Math.random() * 3);
+            }
+            setCell(row, column, value);
         }
 
         // checks the board and declare winner
@@ -87,13 +430,13 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
             // winner? declare!
             if (winner) {
                 $scope.winner = winner;
-                if(winner=="X"){
+                if (winner == "X") {
                     $scope.xWins++;
                 }
-                if(winner=="O"){
+                if (winner == "O") {
                     $scope.oWins++;
                 }
-                alert("The winner is " + winner);
+                $('body').prepend('<div class = "winner">The winner is ' + winner + '</div>');
             }
 
             // no more empty cell - no winner
@@ -103,4 +446,7 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
             }
         }
 
-    }]);
+    }
+
+])
+;

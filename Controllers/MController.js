@@ -5,6 +5,8 @@ EyePlay.controller('MController', ['$scope', '$modal',
         var spacesFlagged = 0;
         var remainingClicks;
         var bombsRemaining;
+        var selectedSquare = false;
+        var selectedButton;
 
 //creates grid with html specs
         $scope.createGrid = function () {
@@ -15,7 +17,7 @@ EyePlay.controller('MController', ['$scope', '$modal',
             remainingClicks = x*y-numBombs;
             bombsRemaining = numBombs;
             spacesFlagged =0;
-            $('#minesLeft').val(numBombs);
+            $('.minesLeft').val(numBombs);
             for (i = 0; i < x; i++) {
                 values[i] = new Array(y);
             }
@@ -25,7 +27,6 @@ EyePlay.controller('MController', ['$scope', '$modal',
             for (var i = 0; i < x; i++) {
                 for (var j = 0; j < y; j++) {
                     values[i][j]=0;
-                    // var square = "<button class='space'><span id=" + "'" + i + "," + j + "'" + " class='glyphicon'></span></button>";
                     var square = "<button id=" + i + ',' + j + " class='space'><span class='glyphicon'></span></button>";
                     gridLayout.append(square);
                 }
@@ -41,16 +42,44 @@ EyePlay.controller('MController', ['$scope', '$modal',
         $scope.eventHandler = function(event) {
             switch (event.which) {
                 case 1:
-                    $scope.checkBomb(this);
+                    $scope.handleClick(this);
+                    //$scope.checkBomb(this);
                     break;
                 case 2:
                     alert('Middle mouse button pressed');
                     break;
                 case 3:
-                    $scope.flagSquare(this);
+                    //$scope.flagSquare(this);
                     break;
                 default:
                     alert('You have a strange mouse');
+            }
+        };
+
+        $scope.handleClick = function (button) {
+            var span = $(button.children[0]);
+            var x = $scope.parseId(button.id)[0];
+            var y = $scope.parseId(button.id)[1];
+            if(selectedSquare==false){
+                $(button).addClass("selectedSpace");
+                selectedSquare = true;
+                selectedButton = button;
+            }else {
+                $(selectedButton).removeClass("selectedSpace");
+                $(button).addClass("selectedSpace");
+                selectedSquare = true;
+                selectedButton = button;
+
+            }
+
+        };
+
+        $scope.onAction = function (int) {
+            if(int==1){
+                $scope.checkBomb(selectedButton);
+            }else{
+                $scope.flagSquare(selectedButton);
+                $(selectedButton).removeClass("selectedSquare");
             }
         };
 
@@ -244,7 +273,7 @@ EyePlay.controller('MController', ['$scope', '$modal',
                 }
             }
             var totalMines = $("#numMines").val();
-            $("#minesLeft").val(totalMines - spacesFlagged);
+            $(".minesLeft").val(totalMines - spacesFlagged);
 
         };
 
@@ -258,9 +287,9 @@ EyePlay.controller('MController', ['$scope', '$modal',
                 alert("Too many mines");
                 var num = x * y - 1;
                 $("#numMines").val(num);
-                $('#minesLeft').val(num);
+                $('.minesLeft').val(num);
             } else {
-                $('#minesLeft').val(mines);
+                $('.minesLeft').val(mines);
             }
             $scope.createGrid();
         };

@@ -27,9 +27,14 @@ var utility = {
     }
 };
 
+var restart = function () {
+    $("#board_cont").empty();
+    board.init( $('#board_cont'));
+};
+
 var board = {
     turn: 'blue',
-    col: 0,						// the column which the mouse if currently over
+    col: 0,						    // the column which the mouse if currently over
     win: false,
     animating: false,				// flag, true when animating the 'handle' object (dropping a piece)
     quatro: [], 					// each time a pair is checked, and found identical, it's inserted into here
@@ -37,17 +42,21 @@ var board = {
     handle: $('<div>').attr('id', 'handle').append('<b><b></b></b>'),
 
     init: function (container) {
-        //this.table = this.makeTable();		// create the board table
-        //this.cells = this.table.find('td'); // cache the table cells
+        $(".restart").width(8*120-15);
+        for (var i= 0; i < 8 ; i++){
+            board.arr[i].length=0;
+        }
+        board.turn='blue';
+        board.col = 0;						    // the column which the mouse if currently over
+        board.win= false;
+        board.animating= false;				// flag, true when animating the 'handle' object (dropping a piece)
+        board.quatro= []; 					// each time a pair is checked, and found identical, it's inserted into here
+        board.handle = $('<div>').attr('id', 'handle').append('<b><b></b></b>');
+
         this.table = this.makeBoard();		// create the board table
-
         this.handle.addClass(board.turn).appendTo(this.table);
-        //this.cells = this.table.find('div'); // cache the table cells
-
         this.userEvents();
         container.append(this.table);	// append the board to the DOM only once it's completed
-
-        options.bind_buttons();
     },
 
     makeBoard: function () {
@@ -59,7 +68,6 @@ var board = {
             for (rows = 8; rows--;) {
                 $('<div>').appendTo(col).data('index', 7 - cols + '' + rows);
             }
-            //$('<div>').append('<b><b></b></b>').appendTo(col).addClass('drop');
         }
         return board;
     },
@@ -113,7 +121,7 @@ var board = {
         // piece falling down animation
         function animateFall() {
             that.animating = true;
-            position = row * 51;
+            position = row * 52;
             duration = row * 80 + 150;
 
             that.handle.animate({top: position}, duration, "easeOutBounce", function () {
@@ -129,7 +137,7 @@ var board = {
                     // put the handle at the column the mouse CURRENTLY is
                     that.handle.show().css({
                         top: '-55px',
-                        left: that.col * 51
+                        left: that.col * 120
                     }).find('> b > b').animate({padding: '22px'}, 400, "easeOutExpo"); // bring the handle back to the top
                     that.changeTurn();
                 }

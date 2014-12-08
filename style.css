@@ -12,8 +12,14 @@
     font-weight: bold;
 
 }
+
+.restart {
+    margin-left: 85px;
+    height: 80px;
+}
+
 #topPanel {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 .gameChoice:hover, #about:hover {
     cursor: pointer !important;
@@ -48,6 +54,34 @@ span.glyphicon-info-sign {
     vertical-align: middle;
 }
 
+.winner{
+    text-align: center;
+    font-size: 500%;
+}
+
+.selected{
+    background-color: blue;
+    font-size: 300%;
+}
+
+#ttt {
+    margin: 0 auto;
+}
+
+#about {
+    border-left: solid thin #000000;
+}
+
+.btn-info{
+    font-size: 3em;
+    height: 80px;
+    width: 858px;
+}
+
+span.glyphicon-info-sign {
+    font-size: 3em;
+}
+
 /* End TTT style */
 
 /* minesweeper css */
@@ -56,10 +90,13 @@ span.glyphicon-info-sign {
     margin-top: 2%;
     margin-bottom: .5%;
 }
-
+.selectedSpace {
+    background-color: orange;
+}
 #controlPanel {
     margin-left: auto;
     margin-right: auto;
+    margin-top: -10px;
     width: 98%;
 }
 
@@ -90,11 +127,11 @@ br {
     width: 60px;
     height: 60px;
     vertical-align: top;
-    margin: 1%;
+    margin: 2%;
 }
 
 .space:hover {
-    background: #000000;
+    background: lightblue;
 }
 
 .glyphicon-asterisk {

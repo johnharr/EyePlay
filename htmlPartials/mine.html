@@ -1,21 +1,35 @@
 <div ng-controller="MController" oncontextmenu="return false;">
     <div id="controlPanel" class="row">
         <div class="col-xs-2 col-sm-2 col-md-2">
-            Mines: <input type="text" id="minesLeft" style="width: 2em; text-align: center;" disabled/>
+            Mines: <input type="text" class="minesLeft" style="width: 2em; text-align: center;" disabled/>
         </div>
-        <div id="grid" class="col-xs-3 col-sm-3 col-md-3">
-            <input id="gridRows" type="number" min="4" max="30" value="8" ng-click="createGrid();"/>
+        <div id="grid" class="col-xs-3 col-sm-3 col-md-3" ng-hide="true">
+            <input id="gridRows" type="number" min="4" max="30" value="5" ng-click="createGrid();"/>
             <span class="glyphicon glyphicon-remove center"></span>
-            <input id="gridCols" type="number" min="4" max="40" value="8" ng-click="createGrid();"/>
+            <input id="gridCols" type="number" min="4" max="40" value="9" ng-click="createGrid();"/>
         </div>
-        <div id="restart" class="col-xs-2 col-sm-2 col-md-2">
-            <button id="reset" class="btn btn-danger" style="background: #000000" ng-click="createGrid();">START</button>
+        <div id="restart" class="col-xs-8 col-sm-8 col-md-8">
+            <button id="reset" class="btn btn-primary"  style="width: 860px;" ng-click="createGrid();">START
+            </button>
         </div>
-        <div class="col-xs-3 col-sm-3 col-md-3">
+        <div class="col-xs-3 col-sm-3 col-md-3" ng-hide="true">
             # Mines: <input type="number" id="numMines" style="width: 3em;" min="1" value="8" ng-click="checkMines();"/>
         </div>
-        <div id="timer" class="col-xs-2 col-sm-2 col-md-2"></div>
+        <div id="timer" class="col-xs-2 col-sm-2 col-md-2" ng-hide="true"></div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            Mines: <input type="text" class="minesLeft" style="width: 2em; text-align: center;" disabled/>
+        </div>
     </div>
 
-    <div id="gridLayout"></div>
+    <div style="width: 100%;">
+        <div id="reveal" style="float: left; width: 15%; text-align: right; height: 100%;">
+            <button class="btn btn-success" style="height: 490px; width: 150px;" ng-click="onAction(1)">Reveal</button>
+        </div>
+
+        <div id="flag" style="float: right; width: 15%; height:490px;">
+            <button class="btn btn-danger" style="height: 100%; width: 150px;" ng-click="onAction(2);">Flag</button>
+        </div>
+        <div id="gridLayout" style="width:70%; margin-right: auto; margin-left: auto;"></div>
+
+    </div>
 </div>

@@ -1,19 +1,24 @@
 <div ng-controller="TTTController">
-    <h2 ng-show="!winner" class="center">{{player}}'s turn
-    </h2>
-    <div ng-show="winner" class="center"><button class="btn btn-info" ng-click="newGame()">New Game</button></h3>
+
+    <div ng-show="winner" class="center">
+        <button class="btn btn-info" ng-click="newGame()">New Game</button>
+
     </div>
     <div class="center">
-        <div id="wins">
-            <div>O: {{oWins}}<br/>X: {{xWins}}</div>
-        </div>
+
 
         <table id="ttt" border="1">
-            <tr ng-repeat="row in [0,1,2]">
+            <tbody><tr ng-repeat="row in [0,1,2]">
                 <td ng-repeat="column in [0,1,2]" ng-click="cellClick(row,column)" ng-class="cellClass(row,column)">
                     {{cellText(row,column)}}
                 </td>
             </tr>
-        </table>
+            </tbody></table>
+        <h2 ng-show="!winner" class="center">You are O
+        </h2>
+
+        <div id="wins">
+            <div>O: {{oWins}}<br>X: {{xWins}}</div>
+        </div>
     </div>
 </div>
