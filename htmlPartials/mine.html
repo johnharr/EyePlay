@@ -1,6 +1,6 @@
-<div ng-controller="MController" oncontextmenu="return false;">
+<div ng-controller="MController" oncontextmenu="return false;" style="margin-top: 10px;">
     <div id="controlPanel" class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="col-xs-2 col-sm-2 col-md-2" style="font-size: 175%;">
             Mines: <input type="text" class="minesLeft" style="width: 2em; text-align: center;" disabled/>
         </div>
         <div id="grid" class="col-xs-3 col-sm-3 col-md-3" ng-hide="true">
@@ -9,20 +9,20 @@
             <input id="gridCols" type="number" min="4" max="40" value="9" ng-click="createGrid();"/>
         </div>
         <div id="restart" class="col-xs-8 col-sm-8 col-md-8">
-            <button id="reset" class="btn btn-primary"  style="width: 860px;" ng-click="createGrid();">START
+            <button id="reset" class="btn btn-primary"  style="width: 860px;" ng-click="createGrid();">Start
             </button>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3" ng-hide="true">
             # Mines: <input type="number" id="numMines" style="width: 3em;" min="1" value="8" ng-click="checkMines();"/>
         </div>
         <div id="timer" class="col-xs-2 col-sm-2 col-md-2" ng-hide="true"></div>
-        <div class="col-xs-2 col-sm-2 col-md-2">
+        <div class="col-xs-2 col-sm-2 col-md-2" style="font-size: 175%;">
             Mines: <input type="text" class="minesLeft" style="width: 2em; text-align: center;" disabled/>
         </div>
     </div>
 
     <div style="width: 100%;">
-        <div id="reveal" style="float: left; width: 15%; text-align: right; height: 100%;">
+        <div id="reveal" style="float: left; width: 15%; text-align: right; height: 100%; padding: 0;">
             <button class="btn btn-success" style="height: 490px; width: 150px;" ng-click="onAction(1)">Reveal</button>
         </div>
 

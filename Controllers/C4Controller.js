@@ -42,7 +42,7 @@ var board = {
     handle: $('<div>').attr('id', 'handle').append('<b><b></b></b>'),
 
     init: function (container) {
-        $(".restart").width(8*120-15);
+        $(".restart").width(8*140-15);
         for (var i= 0; i < 8 ; i++){
             board.arr[i].length=0;
         }
@@ -100,7 +100,7 @@ var board = {
             var col = that.col = asides.index($(this));
             if (!that.animating) {
                 // check which column is the mouse over now
-                board.handle.css('left', col * 120);
+                board.handle.css('left', col * 140);
             }
         }
     },
@@ -121,8 +121,8 @@ var board = {
         // piece falling down animation
         function animateFall() {
             that.animating = true;
-            position = row * 52;
-            duration = row * 80 + 150;
+            position = row * 51;
+            duration = row * 80 + 140;
 
             that.handle.animate({top: position}, duration, "easeOutBounce", function () {
                 that.animating = false;
@@ -137,7 +137,7 @@ var board = {
                     // put the handle at the column the mouse CURRENTLY is
                     that.handle.show().css({
                         top: '-55px',
-                        left: that.col * 120
+                        left: that.col * 140
                     }).find('> b > b').animate({padding: '22px'}, 400, "easeOutExpo"); // bring the handle back to the top
                     that.changeTurn();
                 }

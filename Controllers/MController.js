@@ -156,6 +156,12 @@ EyePlay.controller('MController', ['$scope', '$modal',
             }
         };
 
+        $scope.loss = function() {
+            var modalInstance = $modal.open({
+                templateUrl: '/Courses/comp426-f14/hajohn/COMP580/EyePlay//htmlPartials/loss.html',
+                controller: 'ModalInstance'
+            });
+        };
 
 // check if the space clicked represents a bomb
         $scope.checkBomb = function (button) {
@@ -166,8 +172,9 @@ EyePlay.controller('MController', ['$scope', '$modal',
 
             if (values[x][y]=="bomb" && !span.hasClass("glyphicon-flag")) {
                 span.addClass("glyphicon-asterisk");
-                alert("You clicked on a bomb: GAME OVER \n\nThe board will be reset");
-                $scope.createGrid();
+                $scope.loss();
+                $(".space").off();
+
             } else {
                 if(span.hasClass("glyphicon") && !span.hasClass("glyphicon-flag")){
                     span.removeClass("glyphicon");
@@ -295,7 +302,16 @@ EyePlay.controller('MController', ['$scope', '$modal',
         };
 
         $scope.winnerWinner = function (){
-            alert("You have won MINESWEEPER");
+            $scope.win();
+            $(".space").off();
+
         };
+
+        $scope.win = function() {
+            var modalInstance = $modal.open({
+                templateUrl: '/Courses/comp426-f14/hajohn/COMP580/EyePlay/htmlPartials/winner.html',
+                controller: 'ModalInstance'
+            });
+        }
     }]);
 

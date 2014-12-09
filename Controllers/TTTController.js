@@ -401,6 +401,13 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
             setCell(row, column, value);
         }
 
+        function win () {
+            var modalInstance = $modal.open({
+                templateUrl: '/Courses/comp426-f14/hajohn/COMP580/EyePlay/htmlPartials/winner.html',
+                controller: 'ModalInstance'
+            });
+        }
+
         // checks the board and declare winner
         function checkBoard() {
             var winner, empty = false;
@@ -435,8 +442,8 @@ EyePlay.controller('TTTController', ['$scope', '$modal',
                 }
                 if (winner == "O") {
                     $scope.oWins++;
+                    win();
                 }
-                $('body').prepend('<div class = "winner">The winner is ' + winner + '</div>');
             }
 
             // no more empty cell - no winner
